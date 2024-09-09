@@ -23,9 +23,6 @@
     "type": "git",
     "url": "https://github.com/mutafow/keep-me-up"
   },
-  "dependencies": {
-    "@nut-tree/nut-js": "^2.0.1"
-  },
   "devDependencies": {
     "@types/node": "^17.0.16",
     "eslint": "^8.10.0"
@@ -44,5 +41,8 @@
     ],
     "outputPath": "build",
     "compress": "GZip"
+  },
+  "dependencies": {
+    "@nut-tree-fork/nut-js": "^4.2.2"
   }
 }
