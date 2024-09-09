@@ -2,8 +2,8 @@
 //@ts-check
 
 /** Import nut-js which handles the mouse-moving functionalities */
-const { mouse, Point, sleep } = require("@nut-tree/nut-js");
-const { version } = require("./package.json");
+const { mouse, Point, sleep } = require('@nut-tree-fork/nut-js');
+const { version } = require('./package.json');
 
 const colored = {
   yellow: (text) => `\x1b[33m` + text + `\x1b[0m`,
@@ -65,7 +65,7 @@ const getArgParam = (param, defaultValue) => {
  * @returns {number} Amount of pixels to move the cursor by. User defined or default.
  */
 const getMoveOffset = () => {
-  return getArgParam("--offset", DEFAULTS.OFFSET_PX);
+  return getArgParam('--offset', DEFAULTS.OFFSET_PX);
 };
 
 /**
@@ -77,7 +77,7 @@ const getMoveOffset = () => {
  * @returns {ITimeInterval} Amount of MS to wait before moving the cursor after system is idle. User defined or default.
  */
 const getIdleTimeInterval = () => {
-  const intervalTime = getArgParam("--interval", DEFAULTS.INTERVAL);
+  const intervalTime = getArgParam('--interval', DEFAULTS.INTERVAL);
 
   return {
     seconds: intervalTime,
@@ -90,7 +90,7 @@ const getIdleTimeInterval = () => {
  * @returns {boolean} If --random tag is provided in process.args
  */
 const getIsRandom = () => {
-  return args.includes("--random");
+  return args.includes('--random');
 };
 
 /** Returns a figlet welcome heading message */
@@ -126,29 +126,29 @@ const run = async () => {
   process.stdout.cursorTo(4);
   process.stdout.write(
     `Offset:   ${
-      isRandom ? colored.red("Random") : colored.yellow(moveOffset + "px")
+      isRandom ? colored.red('Random') : colored.yellow(moveOffset + 'px')
     }`
   );
   process.stdout.cursorTo(40);
   process.stdout.write(`Ver: ${colored.yellow(version)}\n`);
 
   process.stdout.cursorTo(4);
-  process.stdout.write(`Interval: ${colored.yellow(interval.seconds + "s")}`);
+  process.stdout.write(`Interval: ${colored.yellow(interval.seconds + 's')}`);
   process.stdout.cursorTo(40);
-  process.stdout.write(`By:  ${colored.yellow("bmutafov")}\n`);
+  process.stdout.write(`By:  ${colored.yellow('bmutafov')}\n`);
 
   process.stdout.cursorTo(4);
   process.stdout.write(
-    "___________________________________________________\n\n"
+    '___________________________________________________\n\n'
   );
 
   /** Set the default idle time label and write it to console */
   process.stdout.cursorTo(4);
-  const idleTimeString = "Idling for: ";
+  const idleTimeString = 'Idling for: ';
   process.stdout.write(idleTimeString);
 
   /** Hide the terminal cursor */
-  process.stderr.write("\x1B[?25l");
+  process.stderr.write('\x1B[?25l');
 
   for (let i = 0, moveSign = +1; true; i++) {
     /** Display the info line and keep it updated every second */
@@ -158,10 +158,10 @@ const run = async () => {
     /** Clear everything after */
     process.stdout.clearLine(1);
     /** Write the remaining time */
-    process.stdout.write(colored.yellow(displayIdleTime + "s"));
+    process.stdout.write(colored.yellow(displayIdleTime + 's'));
     process.stdout.cursorTo(40);
     /** Write the status value */
-    process.stdout.write(colored.green("Active"));
+    process.stdout.write(colored.green('Active'));
 
     /** If we have reached the maximum idle time */
     if (i % interval.seconds === 0) {
